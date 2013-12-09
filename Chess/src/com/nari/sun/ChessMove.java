@@ -1,0 +1,19 @@
+package com.nari.sun;
+
+public class ChessMove {
+	int chessId;
+	int fromX;
+	int fromY;
+	int toX;
+	int toY;
+	int score;
+
+	public ChessMove(int chessId, int fromX, int fromY, int toX, int toY, int score) {
+		this.chessId = chessId;
+		this.fromX = fromX;
+		this.fromY = fromY;
+		this.toX = toX;
+		this.toY = toY;
+		this.score = score;
+	}
+}

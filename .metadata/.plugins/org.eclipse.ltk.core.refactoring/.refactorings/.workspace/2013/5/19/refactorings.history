@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Delete resource &apos;SmashingAndroidUICompanion&apos;" deleteContents="false" description="Delete resource &apos;SmashingAndroidUICompanion&apos;" element1="/SmashingAndroidUICompanion" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="1" stamp="1367975517531"/>
+</session>

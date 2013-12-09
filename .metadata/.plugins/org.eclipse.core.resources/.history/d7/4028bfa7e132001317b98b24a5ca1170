@@ -1,0 +1,13 @@
+package com.nari.sun;
+
+public class TimeThread extends Thread {
+	private boolean flag = true;
+	private GameView gameView;
+	public TimeThread(GameView gameView){
+		this.gameView = gameView;
+	}
+	public void steFlag(boolean flag){
+		
+	}
+
+}

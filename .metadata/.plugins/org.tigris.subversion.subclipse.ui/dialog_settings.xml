@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="NewLocationWizard">
+		<list key="ConfigurationWizardMainPage.STORE_URL_ID">
+			<item value="http://rokon.googlecode.com/svn"/>
+			<item value="http://rokon.googlecode.com/svn/trunk"/>
+			<item value="http://rokon.googlecode.com/svn/trunk/rokon-read-only"/>
+			<item value="http://rekon.googlecode.com/svn/trunk/rokon-read-only"/>
+		</list>
+	</section>
+</section>

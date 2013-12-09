@@ -1,0 +1,5 @@
+package com.nari.sun;
+
+public class TimeThread extends Thread {
+
+}

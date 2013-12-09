@@ -1,0 +1,71 @@
+package com.nari.sun;
+
+import android.media.MediaPlayer;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.app.Activity;
+import android.view.Window;
+import android.view.WindowManager;
+
+public class MainActivity extends Activity {
+
+	boolean isSound = true;
+	MediaPlayer startSound;
+	MediaPlayer gameSound;
+
+	Handler myHandler = new Handler() {
+
+		public void handleMessage(Message msg) {
+			if (msg.what == 1) {
+				initMenuView();
+			} else if (msg.what == 2) {
+				initGameView();
+			} else if (msg.what == 3) {
+				initHelpView();
+			}
+		}
+
+	};
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
+		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+		startSound = MediaPlayer.create(this, R.raw.startsound);
+		startSound.setLooping(true);
+
+		gameSound = MediaPlayer.create(this, R.raw.gamesound);
+		gameSound.setLooping(true);
+		initWelcomeView();
+
+	}
+
+	public void initWelcomeView() {
+		this.setContentView(new WelcomeView(this, this));
+		if (isSound) {
+			startSound.start();
+		}
+	}
+
+	public void initMenuView() {
+		if (startSound != null) {
+			startSound.stop();
+			startSound = null;
+		}
+		if (this.isSound) {
+			gameSound.start();
+		}
+		this.setContentView(new MenuView(this, this));
+	}
+
+	public void initGameView() {
+		// TODO Auto-generated method stub
+	}
+
+	public void initHelpView() {
+		// TODO Auto-generated method stub
+
+	}
+}

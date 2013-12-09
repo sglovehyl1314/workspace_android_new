@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;com.nari.sun.layout.Test07_layoutActivityLayout&apos; to &apos;Test07_layoutActivityRelativeLayout&apos;&#x0D;&#x0A;- Original project: &apos;test07_layout&apos;&#x0D;&#x0A;- Original element: &apos;com.nari.sun.layout.Test07_layoutActivityLayout&apos;&#x0D;&#x0A;- Renamed element: &apos;com.nari.sun.layout.Test07_layoutActivityRelativeLayout&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;Test07_layoutActivityLayout&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src&lt;com.nari.sun.layout{Test07_layoutActivityLayout.java[Test07_layoutActivityLayout" matchStrategy="1" name="Test07_layoutActivityRelativeLayout" qualified="false" references="true" similarDeclarations="false" stamp="1329916900906" textual="false" version="1.0"/>
+</session>

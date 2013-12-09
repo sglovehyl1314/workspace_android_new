@@ -1,0 +1,144 @@
+package com.nari.sun;
+
+import android.annotation.SuppressLint;
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.view.MotionEvent;
+import android.view.SurfaceHolder;
+import android.view.SurfaceView;
+import android.view.SurfaceHolder.Callback;
+
+public class MenuView extends SurfaceView implements Callback {
+	MainActivity mainActivity;
+	private TutorialThread thread;
+
+	Bitmap startGame;
+	Bitmap openSound;
+	Bitmap closeSound;
+	Bitmap help;
+	Bitmap exit;
+
+	public MenuView(Context context, MainActivity mainActivity) {
+		super(context);
+		this.mainActivity = mainActivity;
+		getHolder().addCallback(this);
+		this.thread = new TutorialThread(getHolder(), this);
+		initBitmap();
+	}
+
+	public void initBitmap() {
+		startGame = BitmapFactory.decodeResource(getResources(), R.drawable.startgame);
+		openSound = BitmapFactory.decodeResource(getResources(), R.drawable.opensound);
+		closeSound = BitmapFactory.decodeResource(getResources(), R.drawable.closesound);
+		help = BitmapFactory.decodeResource(getResources(), R.drawable.help);
+		exit = BitmapFactory.decodeResource(getResources(), R.drawable.exit);
+	}
+
+	public void onDraw(Canvas canvas) {
+		canvas.drawColor(Color.BLACK);
+		canvas.drawBitmap(startGame, 50, 50, null);
+		if (mainActivity.isSound) {
+			canvas.drawBitmap(closeSound, 50, 150, null);
+		} else {
+			canvas.drawBitmap(openSound, 50, 150, null);
+		}
+		canvas.drawBitmap(help, 50, 250, null);
+		canvas.drawBitmap(exit, 50, 350, null);
+	}
+
+	@Override
+	public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void surfaceCreated(SurfaceHolder holder) {
+		this.thread.setFlag(true);
+		this.thread.start();
+	}
+
+	@Override
+	public void surfaceDestroyed(SurfaceHolder holder) {
+		boolean retry = true;
+		this.thread.setFlag(false);
+		while (retry) {
+			try {
+				this.thread.join();
+				retry = false;
+			} catch (InterruptedException e) {
+			}
+		}
+
+	}
+
+	@Override
+	public boolean onTouchEvent(MotionEvent event) {
+		if(event.getAction()==MotionEvent.ACTION_DOWN){
+			if(event.getX()>105&&event.getX()<220&&event.getY()>60&&event.getY()<95){
+				this.mainActivity.myHandler.sendEmptyMessage(2);
+			}else if(event.getX()>105&&event.getX()<220&&event.getY()>160&&event.getY()<195){
+				this.mainActivity.isSound = !this.mainActivity.isSound;
+				if(!this.mainActivity.isSound){
+					if(this.mainActivity.gameSound!=null){
+						if(this.mainActivity.gameSound.isPlaying()){
+							this.mainActivity.gameSound.pause();
+						}
+					}
+				}else{
+					if(this.mainActivity.gameSound!=null){
+						if(!this.mainActivity.gameSound.isPlaying()){
+							this.mainActivity.gameSound.start();
+						}
+					}
+				}
+			}
+		}
+		return super.onTouchEvent(event);
+	}
+
+	class TutorialThread extends Thread {
+		private int span = 500;
+		private SurfaceHolder surfaceholder;
+		private MenuView menuView;
+		private boolean flag = false;
+
+		public TutorialThread(SurfaceHolder surfaceHolder, MenuView menuView) {
+			this.surfaceholder = surfaceHolder;
+			this.menuView = menuView;
+		}
+
+		public void setFlag(boolean flag) {
+			this.flag = flag;
+		}
+
+		@SuppressLint("WrongCall")
+		@Override
+		public void run() {
+			Canvas c;
+			while (this.flag) {
+				c = null;
+				try {
+					c = this.surfaceholder.lockCanvas(null);
+					synchronized (this.surfaceholder) {
+						menuView.onDraw(c);
+					}
+				} finally {
+					if (c != null) {
+						this.surfaceholder.unlockCanvasAndPost(c);
+					}
+				}
+				try {
+					Thread.sleep(span);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+
+			}
+		}
+	}
+
+}

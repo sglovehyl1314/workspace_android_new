@@ -1,0 +1,90 @@
+package com.nari.sun;
+
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.view.SurfaceHolder;
+import android.view.SurfaceView;
+import android.view.SurfaceHolder.Callback;
+
+public class MenuView extends SurfaceView implements Callback {
+	MainActivity mainActivity;
+	private TutorialThread thread;
+	
+	Bitmap startGame;
+	Bitmap openSound;
+	Bitmap closeSound;
+	Bitmap help;
+	Bitmap exit;
+
+	public MenuView(Context context,MainActivity mainActivity) {
+		super(context);
+		this.mainActivity = mainActivity;
+		getHolder().addCallback(this);
+		this.thread = new TutorialThread(getHolder(), this);
+		initBitmap();
+	}
+	public void initBitmap(){
+		startGame = BitmapFactory.decodeResource(getResources(), R.drawable.startgame);
+		openSound = BitmapFactory.decodeResource(getResources(), R.drawable.openSound);
+		closeSound = BitmapFactory.decodeResource(getResources(), R.drawable.closeSound);
+		help = BitmapFactory.decodeResource(getResources(), R.drawable.help);
+		exit = BitmapFactory.decodeResource(getResources(), R.drawable.exit);
+	}
+	@Override
+	public void surfaceChanged(SurfaceHolder arg0, int arg1, int arg2, int arg3) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void surfaceCreated(SurfaceHolder arg0) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void surfaceDestroyed(SurfaceHolder arg0) {
+		// TODO Auto-generated method stub
+
+	}
+
+	class TutorialThread extends Thread {
+		private int span = 500;
+		private SurfaceHolder surfaceholder;
+		private MenuView menuView;
+		private boolean flag = false;
+		
+		public TutorialThread(SurfaceHolder surfaceHolder, MenuView menuView){
+			this.surfaceholder = surfaceHolder;
+			this.menuView = menuView;
+		}
+		public void setFlag(boolean flag){
+			this.flag = flag;
+		}
+		public void run(){
+			Canvas c;
+			while(this.flag){
+				c=null;
+				try{
+					c = this.surfaceholder.lockCanvas(null);
+					synchronized (this.surfaceholder) {
+						menuView.onDraw(c);
+					}
+				}finally{
+					if(c!=null){
+						this.surfaceholder.unlockCanvasAndPost(c);
+					}
+				}
+				try{
+					Thread.sleep(span);
+				}catch (Exception e) {
+					e.printStackTrace();
+				}
+				
+			}
+		}
+	}
+
+}

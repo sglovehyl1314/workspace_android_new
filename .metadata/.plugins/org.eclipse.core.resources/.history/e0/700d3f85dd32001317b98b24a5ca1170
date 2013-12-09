@@ -1,0 +1,106 @@
+package com.nari.sun;
+
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.view.SurfaceHolder;
+import android.view.SurfaceView;
+import android.view.SurfaceHolder.Callback;
+
+public class MenuView extends SurfaceView implements Callback {
+	MainActivity mainActivity;
+	private TutorialThread thread;
+
+	Bitmap startGame;
+	Bitmap openSound;
+	Bitmap closeSound;
+	Bitmap help;
+	Bitmap exit;
+
+	public MenuView(Context context, MainActivity mainActivity) {
+		super(context);
+		this.mainActivity = mainActivity;
+		getHolder().addCallback(this);
+		this.thread = new TutorialThread(getHolder(), this);
+		initBitmap();
+	}
+
+	public void initBitmap() {
+		startGame = BitmapFactory.decodeResource(getResources(), R.drawable.startgame);
+		openSound = BitmapFactory.decodeResource(getResources(), R.drawable.opensound);
+		closeSound = BitmapFactory.decodeResource(getResources(), R.drawable.closesound);
+		help = BitmapFactory.decodeResource(getResources(), R.drawable.help);
+		exit = BitmapFactory.decodeResource(getResources(), R.drawable.exit);
+	}
+
+	public void onDraw(Canvas canvas) {
+		canvas.drawColor(Color.BLACK);
+		canvas.drawBitmap(startGame, 50, 50, null);
+		if (mainActivity.isSound) {
+			canvas.drawBitmap(closeSound, 50, 150, null);
+		} else {
+			canvas.drawBitmap(openSound, 50, 150, null);
+		}
+		canvas.drawBitmap(help, 50, 250, null);
+		canvas.drawBitmap(exit, 50, 350, null);
+	}
+
+	@Override
+	public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void surfaceCreated(SurfaceHolder holder) {
+		this.thread.setFlag(true);
+		this.thread.start();
+	}
+
+	@Override
+	public void surfaceDestroyed(SurfaceHolder holder) {
+
+	}
+
+	class TutorialThread extends Thread {
+		private int span = 500;
+		private SurfaceHolder surfaceholder;
+		private MenuView menuView;
+		private boolean flag = false;
+
+		public TutorialThread(SurfaceHolder surfaceHolder, MenuView menuView) {
+			this.surfaceholder = surfaceHolder;
+			this.menuView = menuView;
+		}
+
+		public void setFlag(boolean flag) {
+			this.flag = flag;
+		}
+
+		public void run() {
+			Canvas c;
+			while (this.flag) {
+				c = null;
+				try {
+					c = this.surfaceholder.lockCanvas(null);
+					synchronized (this.surfaceholder) {
+						menuView.onDraw(c);
+					}
+				} finally {
+					if (c != null) {
+						this.surfaceholder.unlockCanvasAndPost(c);
+					}
+				}
+				try {
+					Thread.sleep(span);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+
+			}
+		}
+	}
+
+}

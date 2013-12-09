@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<typeInfoHistroy>
+<typeInfo handle="=test/E:\/android-sdk-windows\/platforms\/android-17\/android.jar&lt;android.app(Activity.class[Activity" modifiers="33" timestamp="1365050019690"/>
+<typeInfo handle="=Tank/E:\/android-sdk-windows\/platforms\/android-17\/android.jar&lt;android.view(View.class[View" modifiers="33" timestamp="1365050019690"/>
+<typeInfo handle="=Tank/E:\/android-sdk-windows\/platforms\/android-17\/android.jar&lt;android.widget(Button.class[Button" modifiers="33" timestamp="1365050019690"/>
+<typeInfo handle="=GameView/E:\/android-sdk-windows\/platforms\/android-4\/android.jar&lt;android.view(View.class[View" modifiers="33" timestamp="1329623631779"/>
+<typeInfo handle="=PlaneGame/E:\/android-sdk-windows\/platforms\/android-4\/android.jar&lt;android.view(SurfaceView.class[SurfaceView" modifiers="33" timestamp="1329623631779"/>
+<typeInfo handle="=PlaneGame/E:\/android-sdk-windows\/platforms\/android-4\/android.jar&lt;android.view(SurfaceHolder$Callback.class[Callback" modifiers="1545" timestamp="1329623631779"/>
+<typeInfo handle="=PlaneGame/E:\/android-sdk-windows\/platforms\/android-4\/android.jar&lt;java.lang(Runnable.class[Runnable" modifiers="1537" timestamp="1329623631779"/>
+<typeInfo handle="=imperialExaminations/E:\/android-sdk-windows\/platforms\/android-14\/android.jar&lt;android.view(Surface.class[Surface" modifiers="33" timestamp="1329439727229"/>
+<typeInfo handle="=imperialExaminations/E:\/android-sdk-windows\/platforms\/android-14\/android.jar&lt;java.lang(Runnable.class[Runnable" modifiers="1537" timestamp="1329439727229"/>
+<typeInfo handle="=imperialExaminations/E:\/android-sdk-windows\/platforms\/android-14\/android.jar&lt;android.view(SurfaceHolder$Callback.class[Callback" modifiers="1545" timestamp="1329439727229"/>
+<typeInfo handle="=imperialExaminations/E:\/android-sdk-windows\/platforms\/android-14\/android.jar&lt;android.view(InputQueue$Callback.class[Callback" modifiers="1545" timestamp="1329439727229"/>
+<typeInfo handle="=imperialExaminations/src&lt;com.example.imperialexaminations.tools{ScreenView.java[ScreenView" modifiers="1025" timestamp="1374066327134"/>
+<typeInfo handle="=Chess/E:\/android-sdk-windows\/platforms\/android-8\/android.jar&lt;android.view(SurfaceView.class[SurfaceView" modifiers="33" timestamp="1329442158756"/>
+<typeInfo handle="=Chess/E:\/android-sdk-windows\/platforms\/android-8\/android.jar&lt;android.view(SurfaceHolder$Callback.class[Callback" modifiers="1545" timestamp="1329442158756"/>
+<typeInfo handle="=Chess/E:\/android-sdk-windows\/platforms\/android-8\/android.jar&lt;android.os(Handler$Callback.class[Callback" modifiers="1545" timestamp="1329442158756"/>
+<typeInfo handle="=Chess/E:\/android-sdk-windows\/platforms\/android-8\/android.jar&lt;java.lang(Thread.class[Thread" modifiers="33" timestamp="1329442158756"/>
+<typeInfo handle="=Chess/E:\/android-sdk-windows\/platforms\/android-8\/android.jar&lt;android.view(SurfaceHolder.class[SurfaceHolder" modifiers="1537" timestamp="1329442158756"/>
+</typeInfoHistroy>

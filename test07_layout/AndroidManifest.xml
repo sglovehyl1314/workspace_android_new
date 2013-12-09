@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.nari.sun.layout"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk android:minSdkVersion="8" />
+
+    <application
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name" >
+        <activity
+            android:label="Activity程序主页面"
+            android:name=".Test07_layoutActivity" >
+            <intent-filter >
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:label="非洲地图"
+            android:name=".Test07_layoutActivityFrameLayout" >
+        </activity>
+        <activity
+            android:label="演示混合Layout布局"
+            android:name=".Test07_layoutActivityLayout" >
+        </activity>
+        <activity
+            android:label="演示RelativeLayout布局"
+            android:name=".Test07_layoutActivityRelativeLayout" >
+        </activity>
+        <activity
+            android:label="TableLayout布局"
+            android:name=".Test07_layoutActivityTableLayout" >
+        </activity>
+        <activity
+            android:label="WIDGET应用"
+            android:name=".Test07_Widget" >
+        </activity>
+    </application>
+
+</manifest>
